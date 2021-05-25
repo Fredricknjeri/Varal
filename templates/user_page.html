@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Posting Page{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <h2>List of all the available jobs</h2>
+    <ul>
+        {% for job in mal %}
+        <li>
+            {{job}} <button type="button">Apply</button>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
